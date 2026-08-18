@@ -1,0 +1,278 @@
+/* =============================================================================
+   MERIDIANO — sistema visual
+   =============================================================================
+
+   TIPOGRAFÍA. Por qué estas dos y no Inter.
+
+   Casi todo estudio de desarrollo apila grotescas: Inter, Space Grotesk, Geist.
+   El resultado es competente y anónimo, y anónimo es exactamente lo que no
+   podemos ser cuando el argumento de venta es "no somos el proveedor barato".
+
+   - Display: FRAUNCES. Serif variable de alto contraste. Mueve la lectura de
+     "startup" a "estudio": dice oficio y criterio, que es lo que compra una
+     marca mediana o grande. Se usa con WONK en 0 y SOFT bajo, con tracking
+     negativo en tamaños grandes, para que quede en registro editorial frío y no
+     en registro artesanal.
+   - Cuerpo: ARCHIVO. Grotesca neutra de caja ancha, muy legible entre 14 y 18 px
+     sobre fondo oscuro, y con cifras tabulares. Sostiene la parte técnica y la
+     densidad de datos de las tablas de precios.
+   - Las cifras y los precios usan Archivo con "tnum": números tabulares que se
+     alinean en columna. Eso evita meter una tercera familia monoespaciada.
+
+   Ambas se sirven desde el propio dominio: next/font descarga los binarios en
+   tiempo de build y no queda ninguna petición a Google en tiempo de ejecución.
+
+   COLOR. Seis valores, un solo acento.
+
+   El texto no es blanco puro: el blanco puro sobre negro puro vibra y cansa.
+   --tiza es un blanco cálido roto, con 16.5:1 de contraste sobre --carbon.
+   El acento no es azul eléctrico porque el azul eléctrico es el ajuste por
+   defecto de la categoría. --brasa es calor: enlaza con la línea de
+   restaurantes y sobre negro se lee como luz, no como una mancha de marca.
+   Contraste de --brasa sobre --carbon: 6.4:1, suficiente para texto normal AA.
+   El tono más ajustado de la paleta es --niebla sobre --humo, a 4.9:1: pasa AA.
+
+   La separación entre secciones se hace por cambio de plano
+   (carbon → pizarra → humo) y por aire. Nunca por borde visible.
+   ========================================================================== */
+
+@import "tailwindcss";
+
+@theme {
+  /* --- Paleta ------------------------------------------------------------ */
+  --color-carbon: #0a0a0a; /* fondo base */
+  --color-pizarra: #141414; /* secciones alternas */
+  --color-humo: #1c1c1c; /* superficies elevadas: tarjetas, filas de tabla */
+  --color-tiza: #edeae3; /* texto primario  — 16.5:1 sobre carbon */
+  --color-niebla: #8a8a85; /* texto secundario — 5.7:1 sobre carbon, 4.9:1 sobre humo */
+  --color-brasa: #ff5c1a; /* único acento    — 6.4:1 sobre carbon, 5.5:1 sobre humo */
+
+  /* Filete derivado de --tiza. No es un séptimo color: es tiza al 8%. */
+  --color-hairline: rgb(237 234 227 / 0.09);
+  --color-hairline-fuerte: rgb(237 234 227 / 0.18);
+
+  /* --- Tipografía -------------------------------------------------------- */
+  --font-display: var(--fuente-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--fuente-body), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Ritmo ------------------------------------------------------------- */
+  --ancho-contenido: 78rem; /* 1248 px */
+  --duracion-revelado: 620ms;
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* La nav mide 4.5rem; el ancla no debe quedar debajo. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-carbon);
+    color: var(--color-tiza);
+    font-family: var(--font-body);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Evita el salto horizontal del hero mientras se anima la costura. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 18, "WONK" 0, "opsz" 120;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Foco visible siempre, en cualquier elemento, sin excepción. */
+  :focus-visible {
+    outline: 2px solid var(--color-brasa);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-brasa);
+    color: var(--color-carbon);
+  }
+
+  /* Respeto a prefers-reduced-motion: se apaga todo movimiento, no la interfaz.
+     Los elementos revelados por scroll quedan visibles, nunca ocultos. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Cifras tabulares: precios en columna, alineados. */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Texto display en tamaños grandes: menos SOFT, más tracking negativo. */
+@utility display-xl {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+}
+
+/* Etiqueta de sección: versalitas espaciadas, en niebla o brasa. */
+@utility kicker {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* --- LA COSTURA -------------------------------------------------------------
+   El elemento de firma. Nace de la decisión del hero y baja por todo el sitio:
+   filete izquierdo de cada encabezado, divisor de tablas, barra de progreso.
+   -------------------------------------------------------------------------- */
+
+@utility costura-filete {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.costura-filete::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  bottom: 0.2em;
+  width: 2px;
+  background-color: var(--color-brasa);
+}
+
+/* Enlace de texto: subrayado que se dibuja desde la izquierda al pasar. */
+@utility enlace-costura {
+  position: relative;
+  color: var(--color-tiza);
+  text-decoration: none;
+}
+
+.enlace-costura::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.15em;
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-brasa);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms var(--curva);
+}
+
+.enlace-costura:hover::after,
+.enlace-costura:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* --- Acordeón de preguntas frecuentes ---------------------------------------
+   Se usa <details> nativo: el contenido queda siempre en el HTML, que es lo que
+   necesitan los buscadores y los modelos que citan respuestas. La apertura se
+   anima sólo donde el navegador lo soporta; donde no, abre al instante.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 380ms var(--curva),
+      content-visibility 380ms allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Marca +/− del acordeón. En CSS plano para no depender de variantes de Tailwind. */
+.faq-marca {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.faq-marca::before,
+.faq-marca::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-brasa);
+}
+
+.faq-marca::before {
+  left: 0;
+  right: 0;
+  top: calc(50% - 1px);
+  height: 2px;
+}
+
+.faq-marca::after {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+  transition: transform 300ms var(--curva);
+}
+
+details[open] .faq-marca::after {
+  transform: scaleY(0);
+}
+
+/* Red de seguridad del revelado por scroll.
+   El HTML sale del servidor con el estado inicial de la animación (opacidad 0).
+   Si la persona tiene el movimiento reducido, React no limpia ese estilo en
+   línea al hidratar y la sección se quedaría en blanco. Esta regla lo impide:
+   con prefers-reduced-motion el contenido siempre es visible. */
+@media (prefers-reduced-motion: reduce) {
+  .revelado {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

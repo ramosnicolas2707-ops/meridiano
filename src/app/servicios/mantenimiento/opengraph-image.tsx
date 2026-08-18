@@ -1,0 +1,20 @@
+import { getService } from "@/data/services";
+import { usd } from "@/lib/format";
+import { ogContentType, ogSize, renderOg } from "@/lib/og";
+
+const service = getService("mantenimiento")!;
+
+export const size = ogSize;
+export const contentType = ogContentType;
+export const alt = service.meta.title;
+
+export default function Image() {
+  const desde = Math.min(...service.plans.map((p) => p.price));
+  const mensual = service.plans.every((p) => p.billing === "mes");
+
+  return renderOg({
+    kicker: service.nav,
+    title: service.meta.title,
+    price: `Desde ${usd(desde)} USD${mensual ? " al mes" : ""}`,
+  });
+}

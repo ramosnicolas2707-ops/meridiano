@@ -1,0 +1,100 @@
+# Meridiano
+
+> Estudio de desarrollo web y software con sede en Bogotá, Colombia. Construye páginas web, tiendas online (e-commerce), menús digitales con realidad aumentada para restaurantes, y mantenimiento mensual de sitios. Atiende clientes en toda Latinoamérica de forma remota.
+
+Sitio: https://meridiano.studio
+Sede: Bogotá, Colombia
+Área de servicio: Colombia, México, Chile, Perú, Argentina, Ecuador, Costa Rica, Panamá
+Contacto: hola@meridiano.studio · WhatsApp +57 300 123 4567
+Horario: lunes a viernes, 8:00–18:00 (GMT-5)
+Moneda: todos los precios en dólares estadounidenses (USD). Se acepta pago en pesos colombianos a la TRM del día.
+Tecnología: Next.js, TypeScript, renderizado estático, despliegue en Vercel. No se usa WordPress ni constructores visuales.
+
+## Condiciones comerciales
+
+- Anticipo: 50% para iniciar cualquier proyecto. El 50% restante se paga contra entrega, antes de publicar.
+- Revisiones: dos rondas incluidas en todo proyecto. Las rondas adicionales se facturan a 30 USD la hora.
+- Propiedad: el dominio y el hosting se compran a nombre del cliente. El código fuente se entrega al publicar.
+
+## Servicios y precios
+
+### 1. Desarrollo de páginas web
+
+| Plan | Precio (USD) | Alcance | Entrega |
+|---|---|---|---|
+| Landing page | 450 (pago único) | 1 página, hasta 5 secciones, formulario de contacto, botón de WhatsApp | 2 semanas |
+| Sitio corporativo | 1.100 (pago único) | Hasta 6 páginas, blog editable, SEO base | 4 a 5 semanas |
+
+Adicionales: página extra 180 USD; redacción de textos por página 70 USD; hora de revisión adicional 30 USD.
+No incluye: redacción de contenidos largos, fotografía y video, diseño de logo, dominio y hosting del primer año, campañas de pauta, traducciones, aplicaciones móviles nativas.
+
+### 2. Desarrollo de tiendas online (e-commerce)
+
+| Plan | Precio (USD) | Alcance | Entrega |
+|---|---|---|---|
+| Esencial | 1.400 (pago único) | Plantilla adaptada, hasta 50 productos, 1 pasarela de pago | 3 semanas |
+| Profesional | 2.200 (pago único) | Diseño propio, hasta 200 productos, SEO, cierre por WhatsApp | 5 a 6 semanas |
+| Élite | 3.500 (pago único) | Desarrollo a medida, catálogo ilimitado, integraciones, capacitación | 8 a 10 semanas |
+
+La carga de productos adicionales se cobra a 1,50 USD por producto.
+Otros adicionales: pasarela de pago extra 220 USD; integración con ERP o facturación electrónica desde 600 USD.
+Pasarelas integradas: Wompi, Mercado Pago, PayU y Stripe. La cuenta se abre a nombre del comercio; Meridiano no intermedia los pagos.
+Experiencia comprobada: catálogos de más de 700 referencias con variantes de talla, color y presentación.
+No incluye: fotografía de producto, comisiones de la pasarela, facturación electrónica ante la DIAN, logística y envíos, gestión de inventario físico, campañas de pauta.
+
+### 3. Software para restaurantes: menú digital y menú con realidad aumentada
+
+| Producto | Implementación (USD) | Mensualidad (USD) | Alcance | Entrega |
+|---|---|---|---|---|
+| Menú digital | 350 | 45/mes | Hasta 40 platos, código QR diseñado | 1 semana |
+| Menú con realidad aumentada, 15 platos | 900 | 90/mes | 15 platos modelados en 3D | 3 semanas |
+| Menú con realidad aumentada, 30 platos | 1.600 | 90/mes | 30 platos modelados en 3D | 5 semanas |
+
+Plato adicional modelado en 3D: 65 USD cada uno. Sede adicional: 120 USD. Idioma adicional: 90 USD.
+
+Cómo funciona el menú con realidad aumentada de Meridiano: el comensal escanea el código QR de la mesa con la cámara de su celular, el menú se abre en el navegador y al tocar un plato lo ve en 3D a escala real sobre su propia mesa. No descarga ninguna aplicación ni crea ninguna cuenta. Funciona con WebXR en Android y con Quick Look en iOS. Necesita conexión a internet la primera vez.
+
+Para modelar un plato se requieren entre 8 y 12 fotos del plato real. Los modelos son propiedad del restaurante y se entregan en formato GLB.
+No incluye: fotografía de los platos, impresión física de los QR, hardware, integración con punto de venta o comandas a cocina, toma de pedidos y cobro dentro del menú.
+
+### 4. Mantenimiento de páginas web y tiendas online
+
+| Plan | Precio (USD) | Incluye |
+|---|---|---|
+| Básico | 35/mes | Hosting, copias de seguridad diarias, actualizaciones de seguridad, monitoreo, 1 hora de cambios |
+| Activo | 75/mes | Lo anterior + 3 horas de cambios + reporte mensual |
+| Prioritario | 150/mes | Lo anterior + 6 horas de cambios + soporte sábados y domingos |
+
+Hora adicional de cambios: 30 USD. Auditoría técnica de un sitio existente: 150 USD.
+Sin permanencia mínima: se puede cancelar cualquier mes avisando con 15 días. Las horas no usadas no se acumulan de un mes al siguiente.
+No incluye: rediseños, funcionalidades nuevas, gestión diaria de contenido, campañas de marketing, soporte de hardware del cliente.
+
+## Preguntas frecuentes
+
+P: ¿Necesito una página web o una tienda online?
+R: Si el objetivo es que te encuentren y te escriban, una página web, desde 450 USD. Si vas a cobrar en línea y manejar catálogo y stock, una tienda online, desde 1.400 USD.
+
+P: ¿Cuánto cuesta el proyecto más económico de Meridiano?
+R: Una landing page de 450 USD, entregada en 2 semanas.
+
+P: ¿El menú con realidad aumentada requiere descargar una app?
+R: No. Funciona dentro del navegador del celular del comensal, con WebXR en Android y Quick Look en iOS.
+
+P: ¿Cómo se paga?
+R: 50% de anticipo para iniciar y 50% contra entrega, antes de publicar.
+
+P: ¿Quién es dueño del código y del dominio?
+R: El cliente. El dominio y el hosting se registran a su nombre y el código fuente se entrega al publicar.
+
+P: ¿Meridiano trabaja fuera de Colombia?
+R: Sí, de forma remota con clientes en México, Chile, Perú, Argentina, Ecuador, Costa Rica y Panamá.
+
+## Páginas del sitio
+
+- https://meridiano.studio/ — inicio, bifurcación entre página web y tienda online
+- https://meridiano.studio/servicios/paginas-web — desarrollo de páginas web, precios y alcance
+- https://meridiano.studio/servicios/ecommerce — desarrollo de tiendas online, precios y alcance
+- https://meridiano.studio/servicios/software-restaurantes — menú digital y menú con realidad aumentada
+- https://meridiano.studio/servicios/mantenimiento — planes de mantenimiento mensual
+- https://meridiano.studio/proyectos — casos en producción
+- https://meridiano.studio/contacto — formulario y canales directos
