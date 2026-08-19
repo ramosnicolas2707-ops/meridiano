@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import {
   motion,
+  useMotionValue,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -28,13 +29,21 @@ import { Container } from "./ui";
  * En pantallas táctiles y con prefers-reduced-motion la costura existe, quieta,
  * y las dos opciones se apilan.
  */
+/** Fuera del componente: un objeto nuevo en cada render reinicia el muelle. */
+const MUELLE = { stiffness: 150, damping: 24, mass: 0.6 } as const;
+
 export function HeroFork() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
   const [activo, setActivo] = useState<"left" | "right" | null>(null);
 
   // Fracción de ancho del panel izquierdo. 0.5 = costura al centro.
-  const split = useSpring(0.5, { stiffness: 150, damping: 24, mass: 0.6 });
+  //
+  // El muelle tiene que seguir a una fuente, no recibir .set() en su salida:
+  // useSpring(0.5, ...) fija 0.5 como objetivo permanente y devuelve ahí
+  // cualquier valor que se le escriba encima. Por eso hay dos valores.
+  const objetivo = useMotionValue(0.5);
+  const split = useSpring(objetivo, MUELLE);
   const anchoIzq = useTransform(split, (v) => `${v * 100}%`);
   const anchoDer = useTransform(split, (v) => `${(1 - v) * 100}%`);
 
@@ -49,20 +58,20 @@ export function HeroFork() {
     const { left, width } = e.currentTarget.getBoundingClientRect();
     const lado = e.clientX - left < width / 2 ? "left" : "right";
     setActivo(lado);
-    split.set(lado === "left" ? 0.57 : 0.43);
+    objetivo.set(lado === "left" ? 0.57 : 0.43);
   };
 
   const soltarPuntero = () => {
     if (reduce) return;
     setActivo(null);
-    split.set(0.5);
+    objetivo.set(0.5);
   };
 
   /** El teclado mueve la costura igual que el cursor: tabular es elegir. */
   const enfocarLado = (lado: "left" | "right") => () => {
     if (reduce) return;
     setActivo(lado);
-    split.set(lado === "left" ? 0.57 : 0.43);
+    objetivo.set(lado === "left" ? 0.57 : 0.43);
   };
 
   return (

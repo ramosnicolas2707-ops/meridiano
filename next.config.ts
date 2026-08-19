@@ -7,10 +7,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 828, 1080, 1280, 1920],
   },
-  // Todas las rutas son estaticas: no hay fetch en request time ni cookies/headers.
-  experimental: {
-    optimizePackageImports: ["framer-motion"],
-  },
+  // No se usa optimizePackageImports con framer-motion: partía el módulo en dos
+  // instancias y los valores de useSpring dejaban de seguir a su fuente.
 };
 
 export default nextConfig;
